@@ -12,31 +12,42 @@ public class RegistrationPage extends Utils
     private By _dayDOB = By.xpath("//select[@name='DateOfBirthDay']");
     private By _monthDOB =By.xpath("//select[@name='DateOfBirthMonth']");
     private By _yearDOB =By.xpath(" //select[@name='DateOfBirthYear']");
-    private By _emailID =By.xpath("//input[@name='Email']");
-    private By _password =By.xpath("//input[@name='Password']");
-    private By _confirmPassword = By.xpath("//input[@name='ConfirmPassword']");
+    private By _registEmailID =By.xpath("//input[@name='Email']");
+    private By _registPassword =By.xpath("//input[@name='Password']");
+    private By _regsterConfirmPassword = By.xpath("//input[@name='ConfirmPassword']");
     private By _registerButton = By.xpath("//input[@name='register-button']");
 
 
     private static String timestamp=currentdatetime();
 
     public void verifyUserIsOnRegisterPage()
+
     {
         assertURLtext("register");
        }
-    public void userEnterRegistrationDetail(String fname,String lname,
-                                            String day,String month,String year,String id,String pass,String cpass)
-    {
+    public void userEnterRegistrationDetail() throws InterruptedException {
+
+      // String FirstName = loadProp.getPropety("FirstName");
         clickElements(_maleClick);
         clickElements( _femaleClick);
-        enterElements(_firstName,fname);
-        enterElements(_lastName, lname);
-        selectDropdownValue(_dayDOB,day);
-        selectDropdownValue(_monthDOB,month);
-        selectDropdownValue(_yearDOB,year);
-        enterElements(_emailID,id);
-        enterElements(_password,pass);
-        enterElements(_confirmPassword,cpass);
+        enterElements(_firstName,loadProp.getPropety("FirstName"));
+        enterElements(_lastName,loadProp.getPropety("LastName"));
+        selectDropdownText(_dayDOB,loadProp.getPropety("Day"));
+        Thread.sleep(1000);
+         selectDropdownText(_monthDOB,loadProp.getPropety("Month"));
+         Thread.sleep(1000);
+        selectDropdownText(_yearDOB,loadProp.getPropety("Year"));
+        Thread.sleep(1000);
+        String firstemail=loadProp.getPropety("firstemail");
+        String  secondemail=loadProp.getPropety("secondemail");
+        String Email= firstemail+currentdatetime()+secondemail;
+        enterElements(_registEmailID,Email);
+
+        Thread.sleep(1000);
+        enterElements(_registPassword,loadProp.getPropety("Password"));
+        Thread.sleep(1000);
+        enterElements(_regsterConfirmPassword,loadProp.getPropety("Cpassword"));
+        Thread.sleep(1000);
         clickElements(_registerButton);
     }
 }

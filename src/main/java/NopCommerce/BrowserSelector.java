@@ -3,6 +3,7 @@ package NopCommerce;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.GeckoDriverInfo;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 
@@ -11,12 +12,13 @@ public class BrowserSelector extends Utils
     LoadProp loadProp = new LoadProp();
     public void setUpBrowser()
     {
-       String browser = loadProp.getPropety("browser");
-    //   String setUpBrowser=System.getProperty("browser");
+        String browser = loadProp.getPropety("Browser");
+    //   String browser=System.getProperty("browser");
+        System.out.println(browser);
 
        if (browser.equalsIgnoreCase("firefox"))
        {
-           System.setProperty("webdriver.gecko.driver","src\\test\\java\\BrowserDriver\\geckodriver");
+           System.setProperty("webdriver.gecko.driver","src\\test\\resources\\BrowserDriver\\geckodriver.exe");
            System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE,"true");
            System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
            driver = new FirefoxDriver();
@@ -24,7 +26,7 @@ public class BrowserSelector extends Utils
        }
        else if (browser.equalsIgnoreCase("Chrome"))
        {
-        System.setProperty("webdriver.Chrome.driver","src\\test\\java\\BrowserDriver\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","src\\test\\resources\\BrowserDriver\\chromedriver.exe");
         ChromeOptions options=new ChromeOptions();
         options.addArguments("disable-infobars");
         options.addArguments("-disable-extensions");
@@ -36,7 +38,7 @@ public class BrowserSelector extends Utils
        }
        else if (browser.equalsIgnoreCase("ie"))
        {
-//           System.setProperty("webdriver.ie.driver","src\\test\\java\\BrowserDriver\\IEDriverServer.exe");
+//           System.setProperty("webdriver.ie.driver","src\test\resources\BrowserDriver\IEDriverServer.exe");
 //           InternetExplorerOptions options=new InternetExplorerOptions();
 //           options.setCapability(InternetExplorerDriver.IE_SWITCHES,"-private");
 //           options.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION,true);

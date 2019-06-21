@@ -9,7 +9,8 @@ public class LoginSuccessPage extends Utils
 
     public void verifyUserSeeLoginSuccessfulMessage()
     {
-        assertURLtext("loginresult");
-        assertTextMessage("Login Succeessfully",_loginSuccessMessage);
+
+
+        assertTextMessage("Log out",_loginSuccessMessage);
     }
 }

@@ -6,20 +6,55 @@ public class LoginPage extends Utils
     //This class will store all the locater and method of login page
 {
     LoadProp loadProp=new LoadProp();
-    private By _Email_Id = By.xpath("//input[@name='Email']");
-    private By _Password = By.xpath("//input[@name='Password']");
-    private By _LoginButton    = By.xpath("//input[@class='button-1 login-button']");
+    private By _loginEmailId = By.xpath("//input[@name='Email']");
+    private By _loginPassword = By.xpath("//input[@name='Password']");
+    private By _loginButton    = By.xpath("//input[@class='button-1 login-button']");
 
     public void verifyUserIsOnLoginPage()
     {
-        assertCurrentURL("login");
+        assertURLtext("login");
     }
-    public void loginToNopCommerce(String id,String pass)
+    public void loginToNopCommerce()
     {
-        enterElements(_Email_Id,id);
-        enterElements(_Password,pass);
-        clickElements(_LoginButton);
+        enterElements(_loginEmailId,loadProp.getPropety("Email"));
+        enterElements(_loginPassword,loadProp.getPropety("Password"));
+        clickElements(_loginButton);
+
     }
+    public void userEnterEmailId()
+    {
+        enterElements(_loginEmailId,loadProp.getPropety("Email"));
+
+    }
+    public void userEnterPassword()
+    {
+        enterElements(_loginPassword,loadProp.getPropety("Password"));
+    }
+    public void userClickOnLoginButton()
+    {
+        clickElements(_loginButton);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public void clickOnLoginButton()
+//    {
+//        clickElements(_LoginButton);
+//    }
 
 //    public void typeEmailID(String id)
 //    {
